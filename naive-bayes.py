@@ -34,20 +34,20 @@ class NaiveBayes():
     def density_func(self, X, mu, sigma):
         # calculate probability from a gaussian density function
         constant = -self.num_features/2 * np.log(2*np.pi) - 0.5*np.sum(np.log(sigma+self.epsilon))
-        probabilities = 0.5*np.sum(np.power(x-mu, 2) / (sigma+self.epsilon), 1)
+        probabilities = 0.5*np.sum(np.power(X-mu, 2) / (sigma+self.epsilon), 1)
         return constant - probabilities
 
 
 ###
 
 if __name__ == "__main__":
-    X = np.laodtxt('data/sample-data.txt', delimiter=',')
-    y = np.loadtxt('data/sample-targets.txt') - 1
+    X = np.loadtxt('data/example-data.txt', delimiter=',')
+    y = np.loadtxt('data/example-targets.txt') - 1
 
     print(X.shape)
     print(y.shape)
 
-    NBClassifier = NaiveBayes()
+    NBClassifier = NaiveBayes(X, y)
 
     NBClassifier.train(X,y)
     y_pred = NBClassifier.predict(X)
