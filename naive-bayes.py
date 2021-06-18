@@ -41,8 +41,16 @@ class NaiveBayes():
 ###
 
 if __name__ == "__main__":
-    X = np.loadtxt('data/example-data.txt', delimiter=',')
-    y = np.loadtxt('data/example-targets.txt') - 1
+
+    classify_spam_in_email = True # flag to determina the data that is loaded: True for spam mail classification
+
+    if not classify_spam_in_email:
+        X = np.loadtxt('data/example-data.txt', delimiter=',')
+        y = np.loadtxt('data/example-targets.txt') - 1
+
+    elif classify_spam_in_email:
+        X = np.load('data/X-spam.npy')
+        y = np.load('data/y-spam.npy')
 
     print(X.shape)
     print(y.shape)
