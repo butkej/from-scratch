@@ -11,7 +11,7 @@ import pandas as pd
 import ast
 
 
-data = pd.read_csv('../data/example-emails.csv')
+data = pd.read_csv('../../data/example-emails.csv')
 vocab = open('vocabulary.txt', 'r').read()
 vocab = ast.literal_eval(vocab)
 

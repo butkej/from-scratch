@@ -6,15 +6,14 @@ import numpy as np
 import pandas as pd
 import nltk
 
-
 vocabulary = {}
 
-data = pd.read_csv('../data/example-emails.csv')
+data = pd.read_csv('../../data/example-emails.csv')
 nltk.download('words')
 
 words = set(nltk.corpus.words.words())
 
-def build_vocab(mail, vocabulary=vocabulary):
+def build_vocab(mail, vocab=vocabulary):
     idx = len(vocabulary)
     for word in mail:
         if word.lower() not in vocabulary and word.lower() in words:
@@ -23,9 +22,10 @@ def build_vocab(mail, vocabulary=vocabulary):
 
 
 if __name__ == '__main__':
+    
     for i in range(data.shape[0] + 1):
         mail = data.iloc[i,0].split()
-        print(f'Current email is {i}/{len(data.shape[0])} and the vocabulary has lenght {len(vocabulary)}')
+        print(f'Current email is {i}/{data.shape[0]} and the vocabulary has length {len(vocabulary)}')
         build_vocab(mail)
 
     outfile = open('vocabulary.txt', 'w')
